@@ -1,11 +1,11 @@
 {
-  "name": "atayts-crowdstrike",
+  "name": "ruthenium-crowdstrike",
   "version": "1.2.0",
-  "author": "Alex Tayts",
+  "author": "Ruthenium",
   "summary": "Install and manage CrowdStrike Falcon Sensor",
   "license": "MIT",
-  "source": "https://code.stanford.edu/pe-public/crowdstrike",
-  "issues_url": "https://code.stanford.edu/pe-public/crowdstrike/-/issues",
+  "source": "https://github.com/104ru/crowdstrike",
+  "issues_url": "https://github.com/104ru/crowdstrike/issues",
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
