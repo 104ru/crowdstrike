@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/104ru/crowdstrike.svg?branch=master)](https://travis-ci.com/104ru/crowdstrike)
+
 # crowdstrike
 
 The module is designed to deploy and manage CrowdStrike's Falcon Sensor
