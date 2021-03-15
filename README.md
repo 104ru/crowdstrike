@@ -1,4 +1,7 @@
 [![Build Status](https://travis-ci.com/104ru/crowdstrike.svg?branch=master)](https://travis-ci.com/104ru/crowdstrike)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/ruthenium/crowdstrike.svg)](https://forge.puppet.com/modules/ruthenium/crowdstrike)
+[![Puppet Forge -- Downloads](https://shields.io/puppetforge/dt/ruthenium/crowdstrike)](https://forge.puppet.com/modules/ruthenium/crowdstrike)
+[![Puppet Forge -- Scores](https://img.shields.io/puppetforge/f/ruthenium/crowdstrike.svg)](https://forge.puppet.com/modules/ruthenium/crowdstrike)
 
 # crowdstrike
 
