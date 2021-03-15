@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.2.1
+
+* Configure Travis CI build tests.
+
 ## Release 1.2
 
 * Use PDK 2.0, add metadata and unit test.
