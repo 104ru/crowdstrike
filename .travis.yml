@@ -40,6 +40,7 @@ jobs:
 branches:
   only:
     - main
+    - main
     - /^v\d/
 notifications:
   email: false
