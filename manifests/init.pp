@@ -8,6 +8,10 @@
 #   If `present` or `latest` installs the agent, keeping it up-to-date with the latter value.
 #   When set to `absent` uninstalls the agent's package.
 #
+# @param [Optional[String]] source
+#   Source for Falcon Sensor package. If not defined, package is downloaded from a repo
+#   defined on the system.
+#
 # @param [Optional[String]] cid
 #   Customer IDentifier. Necessary to register the agent with the service. Mandatory.
 #
@@ -36,24 +40,37 @@
 #
 class crowdstrike (
   Enum['present','absent','latest'] $ensure = 'present',
+  Optional[String] $source = undef,
   Optional[String] $cid = undef,
   Optional[Array[String]] $tags = undef,
   Optional[String] $proxy_host = undef,
   Optional[Stdlib::Port] $proxy_port = undef,
 ){
   if $ensure == 'absent' {
+  
     $pkg_ensure = $facts['os']['family'] ? {
       'Debian' => 'purged',
       default  => 'absent'
     }
+    package { 'falcon-sensor': ensure => $pkg_ensure }
+    
   } else {
-    $pkg_ensure = $ensure
-  }
 
-  package { 'falcon-sensor': ensure => $pkg_ensure }
-
-  if $ensure != 'absent' {
-
+    # install package
+    if $source {
+      $pkg_provider = $facts['os']['family'] ? {
+        'Debian' => 'dpkg',
+        default  => 'rpm',
+      }
+      package { 'falcon-sensor':
+        ensure   => present,
+        provider => $pkg_provider,
+        source   => $source,
+      }
+    } else {
+      package { 'falcon-sensor': ensure => $ensure }
+    }
+    
     # tags that have to be applied
     if $tags {
       $tags_str = join($tags, ',')
