@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.2.2
+
+* Merge a [bug fix](https://github.com/104ru/crowdstrike/pull/1) for proxy
+  port type mismatch at comparison. Thanks @richardnixonshead. 
+
 ## Release 1.2.1
 
 * Configure Travis CI build tests.
