@@ -7,7 +7,7 @@
 #   Customer IDentifier. Necessary to register the agent with the service. Mandatory.
 #
 # @param [Optional[String]] source
-#   Installation source for falcon-sensor package. Use system repos if not specified.
+#   Source for falcon-sensor package. Use system repos if not specified.
 #
 # @param [Optional[Array[String]]] tags
 #   Array of string tags used to group agents in the CrowdStrike console.
