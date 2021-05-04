@@ -40,7 +40,7 @@ plan crowdstrike::install (
   # Install Falcon Sensor.
   $results = apply($targets) {
     class { '::crowdstrike':
-      ensure     => 'latest',
+      ensure     => 'present',
       source     => $local_package,
       cid        => $cid,
       tags       => $tags,
