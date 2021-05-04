@@ -116,7 +116,7 @@ class crowdstrike (
       } else {
         if (
           ($current_proxy_host != $proxy_host) or
-          ($current_proxy_port != $proxy_port) or
+          (String($current_proxy_port) != String($proxy_port)) or
           ($current_proxy_disable == true)
         ) {
           # if proxy is disabled, but has to be enabled or host/port have changed
