@@ -73,8 +73,9 @@ class crowdstrike (
       $cmd_proxy = " --apd=FALSE --aph=${proxy_host} --app=${proxy_port}"
     }
 
-    if 'falcon_sensor' in $facts {
-      # crowdstrike is installed
+    if ('falcon_sensor' in $facts) and
+      ('agent_id' in $facts['falcon_sensor']) {
+      # crowdstrike is installed and configured.
       # get currently used tags
       $current_tags = $facts.get('falcon_sensor.tags', undef)
       if $current_tags and (sort($tags) != sort($current_tags)) {

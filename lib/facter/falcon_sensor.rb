@@ -12,13 +12,13 @@ Facter.add(:falcon_sensor) do
       --rfm-state --rfm-reason --version --tags"
 
     # format in which falconctl outputs data
-    pattern = %r{^aid="(?<agent_id>[a-f0-9]*)",\s
+    pattern = %r{^aid(?:=|\sis\s)"?(?<agent_id>not\sset|[a-f0-9]*)"?,\s
       apd(?:=|\sis\s)(?<proxy_disable>not\sset|TRUE|FALSE),\s
       aph(?:=|\sis\s)(?<proxy_host>not\sset|[^,]+),\s
       app(?:=|\sis\s)(?<proxy_port>not\sset|[^,]+),\s
-      rfm-state=(?<reduced_functionality_mode>true|false),\s
-      rfm-reason=(?<reduced_functionality_reason>[^,]+),\s
-      code=0x[A-F0-9]+,\s
+      rfm-state(?:=|\sis\s)(?<reduced_functionality_mode>not\sset|true|false),\s
+      rfm-reason(?:=|\sis\s)(?<reduced_functionality_reason>not\sset|[^,]+),\s
+      (code=0x[A-F0-9]+,\s)?
       version\s=\s(?<version>[\d\.]+)
       (?:Sensor\sgrouping\s)?tags(?:=|\sare\s)(?<tags>.*),\s*$}x
 
@@ -29,7 +29,7 @@ Facter.add(:falcon_sensor) do
       if match_data
         falcon_facts = Hash[match_data.names.zip(match_data.captures)]
 
-        # process other tags, which are strings
+        # convert the values to the appropriate types
         falcon_facts.each do |key, value|
           falcon_facts[key] = case value.downcase
                               when 'true'
@@ -49,6 +49,7 @@ Facter.add(:falcon_sensor) do
       else
         nil
       end
+      # do not include unset values in the fact
       falcon_facts.reject { |_, value| value.nil? }
     else
       nil

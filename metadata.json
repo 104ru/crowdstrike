@@ -1,6 +1,6 @@
 {
   "name": "ruthenium-crowdstrike",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "author": "Ruthenium",
   "summary": "Install and manage CrowdStrike Falcon Sensor",
   "license": "MIT",
@@ -16,17 +16,17 @@
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "10",
+        "8",
         "9",
-        "8"
+        "10"
       ]
     },
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-        "20.04",
+        "16.04",
         "18.04",
-        "16.04"
+        "20.04"
       ]
     },
     {

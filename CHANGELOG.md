@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.2.3
+
+* Handle manually installed falcon-sensor package. Closes
+  [#3](https://github.com/104ru/crowdstrike/issues/3). Thanks @jstraw.
+
 ## Release 1.2.2
 
 * Merge a [bug fix](https://github.com/104ru/crowdstrike/pull/1) for proxy
