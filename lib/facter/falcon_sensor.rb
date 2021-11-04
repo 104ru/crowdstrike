@@ -19,7 +19,7 @@ Facter.add(:falcon_sensor) do
       rfm-state(?:=|\sis\s)(?<reduced_functionality_mode>not\sset|true|false),\s
       rfm-reason(?:=|\sis\s)(?<reduced_functionality_reason>not\sset|[^,]+),\s
       (code=0x[A-F0-9]+,\s)?
-      version\s=\s(?<version>[\d\.]+)
+      version\s=\s(?<version>[\d\.]+)\n?
       (?:Sensor\sgrouping\s)?tags(?:=|\sare\s)(?<tags>.*),\s*$}x
 
     falcon_says = Facter::Util::Resolution.exec(get_string)

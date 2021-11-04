@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.2.4
+
+* Update fact to parse changed output format of falconctl
+
 ## Release 1.2.3
 
 * Handle manually installed falcon-sensor package. Closes
