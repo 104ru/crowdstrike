@@ -50,7 +50,7 @@ Facter.add(:falcon_sensor) do
         nil
       end
       # do not include unset values in the fact
-      falcon_facts.reject { |_, value| value.nil? }
+      (falcon_facts || {}).reject { |_, value| value.nil? }
     else
       nil
     end
