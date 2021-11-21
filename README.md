@@ -65,13 +65,13 @@ class { 'crowdstrike':
 
 Both `proxy_host` and `proxy_port` are mandatory if either specified.
 
-If provisioning token is reqired during the installation, use the `token`
+If provisioning token is reqired during the installation, use the `provisioning_token`
 parameter:
 
 ```puppet
 class { 'crowdstrike':
-  cid   => 'AAAAAAAAAAAA-BB',
-  token => 'XXXXXXXXXXXXXX'
+  cid                => 'AAAAAAAAAAAA-BB',
+  provisioning_token => 'XXXXXXXXXXXXXX'
 }
 ```
 
