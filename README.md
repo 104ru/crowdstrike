@@ -1,7 +1,6 @@
-[![Build Status](https://travis-ci.com/104ru/crowdstrike.svg?branch=master)](https://travis-ci.com/104ru/crowdstrike)
+[![Build Status](https://travis-ci.com/104ru/crowdstrike.svg?branch=master)](https://app.travis-ci.com/github/104ru/crowdstrike)
 [![Puppet Forge](https://img.shields.io/puppetforge/v/ruthenium/crowdstrike.svg)](https://forge.puppet.com/modules/ruthenium/crowdstrike)
 [![Puppet Forge -- Downloads](https://shields.io/puppetforge/dt/ruthenium/crowdstrike)](https://forge.puppet.com/modules/ruthenium/crowdstrike)
-[![Puppet Forge -- Scores](https://img.shields.io/puppetforge/f/ruthenium/crowdstrike.svg)](https://forge.puppet.com/modules/ruthenium/crowdstrike)
 
 # crowdstrike
 
@@ -65,6 +64,16 @@ class { 'crowdstrike':
 ```
 
 Both `proxy_host` and `proxy_port` are mandatory if either specified.
+
+If provisioning token is reqired during the installation, use the `token`
+parameter:
+
+```puppet
+class { 'crowdstrike':
+  cid   => 'AAAAAAAAAAAA-BB',
+  token => 'XXXXXXXXXXXXXX'
+}
+```
 
 ## Limitations
 

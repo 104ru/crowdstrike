@@ -25,11 +25,12 @@ Tags and proxy settings can be changed any time using module parameters.
 ```puppet
 
 class { '::crowdstrike':
-  ensure     => present,
-  cid        => 'AAAAAAAAAAAAAAA-BB' ,
-  tags       => [ 'my_company', 'my_organization' ],
-  proxy_host => 'proxy.mycompany.com',
-  proxy_port => 3128
+  ensure             => present,
+  cid                => 'AAAAAAAAAAAAAAA-BB',
+  provisioning_token => 'XXXXXXXXXXXXXXXXXX',
+  tags               => [ 'my_company', 'my_organization' ],
+  proxy_host         => 'proxy.mycompany.com',
+  proxy_port         => 3128
 }
 ```
 
@@ -39,6 +40,7 @@ The following parameters are available in the `crowdstrike` class:
 
 * [`ensure`](#ensure)
 * [`cid`](#cid)
+* [`provisioning_token`](#provisioning_token)
 * [`tags`](#tags)
 * [`proxy_host`](#proxy_host)
 * [`proxy_port`](#proxy_port)
@@ -57,6 +59,14 @@ Default value: `'present'`
 Data type: `Optional[String]`
 
 Customer IDentifier. Necessary to register the agent with the service. Mandatory.
+
+Default value: ``undef``
+
+##### <a name="provisioning_token"></a>`provisioning_token`
+
+Data type: `Optional[String]`
+
+Provisioning token for the crowdstrike agent installation.
 
 Default value: ``undef``
 

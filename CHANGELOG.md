@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.3.0
+
+* Add `provisioning_token` parameter for a provisioning token.
+  Closes [#6](https://github.com/104ru/crowdstrike/issues/6). Thanks @mnrazak.
+
 ## Release 1.2.4
 
 * Update fact to parse changed output format of falconctl
@@ -20,15 +25,15 @@ All notable changes to this project will be documented in this file.
 
 * Configure Travis CI build tests.
 
-## Release 1.2
+## Release 1.2.0
 
 * Use PDK 2.0, add metadata and unit test.
 * Fix undefined variable if no tags given at registration time. 
 
-## Release 1.1
+## Release 1.1.0
 
 Do not show undefined keys in facter.
 
-## Release 1.0
+## Release 1.0.0
 
 Initial release

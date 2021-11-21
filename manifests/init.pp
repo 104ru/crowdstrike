@@ -11,6 +11,9 @@
 # @param [Optional[String]] cid
 #   Customer IDentifier. Necessary to register the agent with the service. Mandatory.
 #
+# @param [Optional[String]] provisioning_token
+#   Provisioning token for the crowdstrike agent installation.
+#
 # @param [Optional[Array[String]]] tags
 #   Array of string tags used to group agents in the CrowdStrike console.
 #
@@ -23,11 +26,12 @@
 # @example Install Falcon Agent and use proxy for connections
 #
 #   class { '::crowdstrike':
-#     ensure     => present,
-#     cid        => 'AAAAAAAAAAAAAAA-BB' ,
-#     tags       => [ 'my_company', 'my_organization' ],
-#     proxy_host => 'proxy.mycompany.com',
-#     proxy_port => 3128
+#     ensure             => present,
+#     cid                => 'AAAAAAAAAAAAAAA-BB',
+#     provisioning_token => 'XXXXXXXXXXXXXXXXXX',
+#     tags               => [ 'my_company', 'my_organization' ],
+#     proxy_host         => 'proxy.mycompany.com',
+#     proxy_port         => 3128
 #   }
 #
 # @see
@@ -37,6 +41,7 @@
 class crowdstrike (
   Enum['present','absent','latest'] $ensure = 'present',
   Optional[String] $cid = undef,
+  Optional[String] $provisioning_token = undef,
   Optional[Array[String]] $tags = undef,
   Optional[String] $proxy_host = undef,
   Optional[Stdlib::Port] $proxy_port = undef,
@@ -127,9 +132,14 @@ class crowdstrike (
 
       $cmd_cid = " --cid=${cid}"
 
+      $cmd_token = $provisioning_token ? {
+        undef   => '',
+        default => " --provisioning-token=${provisioning_token}"
+      }
+
       exec { 'register-crowdstrike':
         path    => '/usr/bin:/usr/sbin:/opt/CrowdStrike',
-        command => "falconctl -s${cmd_cid}${cmd_proxy}${cmd_tags}",
+        command => "falconctl -s${cmd_cid}${cmd_token}${cmd_proxy}${cmd_tags}",
         require => Package['falcon-sensor'],
         notify  => Service['falcon-sensor'],
       }
