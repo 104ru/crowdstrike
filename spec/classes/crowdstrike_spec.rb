@@ -63,6 +63,22 @@ describe 'crowdstrike' do
         it { is_expected.not_to contain_service('falcon-sensor') }
         it { is_expected.to compile }
       end
+
+      context 'with package source and provider' do
+        let :params do
+          {
+            package_source: '/my/package',
+            package_provider: 'rpm',
+            cid: 'AAAAAAAAAAAAA-BBB'
+          }
+        end
+        it do
+          is_expected.to contain_package('falcon-sensor').with(
+            source: '/my/package',
+            provider: 'rpm',
+          )
+        end
+      end
     end
   end
 end

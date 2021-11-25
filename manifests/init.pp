@@ -23,6 +23,12 @@
 # @param [Optional[Stdlib::Port]] proxy_port
 #   Proxy server port for proxied connections. Mandatory if `proxy_host` is specified.
 #
+# @param package_source
+#   Define a package source for installation
+#
+# @param package_provider
+#   Define a package provider for installation
+#
 # @example Install Falcon Agent and use proxy for connections
 #
 #   class { '::crowdstrike':
@@ -40,11 +46,13 @@
 #
 class crowdstrike (
   Enum['present','absent','latest'] $ensure = 'present',
-  Optional[String] $cid = undef,
-  Optional[String] $provisioning_token = undef,
-  Optional[Array[String]] $tags = undef,
-  Optional[String] $proxy_host = undef,
-  Optional[Stdlib::Port] $proxy_port = undef,
+  Optional[String] $cid                     = undef,
+  Optional[String] $provisioning_token      = undef,
+  Optional[Array[String]] $tags             = undef,
+  Optional[String] $proxy_host              = undef,
+  Optional[Stdlib::Port] $proxy_port        = undef,
+  Optional[String] $package_source          = undef,
+  Optional[String] $package_provider        = undef,
 ){
   if $ensure == 'absent' {
     $pkg_ensure = $facts['os']['family'] ? {
@@ -55,7 +63,11 @@ class crowdstrike (
     $pkg_ensure = $ensure
   }
 
-  package { 'falcon-sensor': ensure => $pkg_ensure }
+  package { 'falcon-sensor':
+    ensure   => $pkg_ensure,
+    source   => $package_source,
+    provider => $package_provider,
+  }
 
   if $ensure != 'absent' {
 
