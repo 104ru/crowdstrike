@@ -29,6 +29,9 @@ The module installs a package `falcon-sensor`, which it assumes to be
 available in a repo configured on the system. The vendor does not maintain
 a Linux repository.
 
+Alternatively you can customize package source and provider to have an ability
+to install from a different source.
+
 ### Beginning with crowdstrike
 
 The most basic usage of the module:
@@ -80,4 +83,11 @@ class { 'crowdstrike':
 If proxy has been used and later disabled, the host and port configuration is
 not removed entirely, only disabled. This does not affect the functionality in
 any way.
+
+CrowdStrike sensor software is capable of auto-updating its binaries if
+configured to do so in the console. It happened in the past when update changes
+the format of the falconctl output, which may break the fact in this module. If
+that happens, the module detects this situation, displays the relevant error
+message and fails the puppet run. If you see this happening, it is time to
+update the version of the module you have.
 

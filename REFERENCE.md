@@ -44,6 +44,8 @@ The following parameters are available in the `crowdstrike` class:
 * [`tags`](#tags)
 * [`proxy_host`](#proxy_host)
 * [`proxy_port`](#proxy_port)
+* [`package_source`](#package_source)
+* [`package_provider`](#package_provider)
 
 ##### <a name="ensure"></a>`ensure`
 
@@ -91,6 +93,22 @@ Default value: ``undef``
 Data type: `Optional[Stdlib::Port]`
 
 Proxy server port for proxied connections. Mandatory if `proxy_host` is specified.
+
+Default value: ``undef``
+
+##### <a name="package_source"></a>`package_source`
+
+Data type: `Optional[String]`
+
+Define a package source for installation
+
+Default value: ``undef``
+
+##### <a name="package_provider"></a>`package_provider`
+
+Data type: `Optional[String]`
+
+Define a package provider for installation
 
 Default value: ``undef``
 

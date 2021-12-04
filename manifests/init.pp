@@ -23,10 +23,10 @@
 # @param [Optional[Stdlib::Port]] proxy_port
 #   Proxy server port for proxied connections. Mandatory if `proxy_host` is specified.
 #
-# @param package_source
+# @param [Optional[String]] package_source
 #   Define a package source for installation
 #
-# @param package_provider
+# @param [Optional[String]] package_provider
 #   Define a package provider for installation
 #
 # @example Install Falcon Agent and use proxy for connections
@@ -54,6 +54,7 @@ class crowdstrike (
   Optional[String] $package_source          = undef,
   Optional[String] $package_provider        = undef,
 ){
+
   if $ensure == 'absent' {
     $pkg_ensure = $facts['os']['family'] ? {
       'Debian' => 'purged',
@@ -69,7 +70,14 @@ class crowdstrike (
     provider => $package_provider,
   }
 
-  if $ensure != 'absent' {
+  if ($ensure != 'absent') {
+    # confirm that the falcon_sensor fact is working, otherwise fail hard
+    if 'falcon_sensor' in $facts {
+      case $facts['falcon_sensor'] {
+        'parsing_error': { fail('CrowdStrike module unalbe to parse falconctl output.') }
+        'falconctl_error': { fail('CrowdStrike module encoutered and error while executing falconctl.') }
+      }
+    }
 
     # tags that have to be applied
     if $tags {
@@ -90,12 +98,11 @@ class crowdstrike (
       $cmd_proxy = " --apd=FALSE --aph=${proxy_host} --app=${proxy_port}"
     }
 
-    if ('falcon_sensor' in $facts) and
-      ('agent_id' in $facts['falcon_sensor']) {
+    if ('falcon_sensor' in $facts) and $facts['falcon_sensor']['cid'] {
       # crowdstrike is installed and configured.
       # get currently used tags
-      $current_tags = $facts.get('falcon_sensor.tags', undef)
-      if $current_tags and (sort($tags) != sort($current_tags)) {
+      $current_tags = $facts.get('falcon_sensor.tags', [])
+      if sort($tags) != sort($current_tags) {
         $update_tags = $cmd_tags
       } else {
         $update_tags = ''

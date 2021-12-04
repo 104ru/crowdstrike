@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.4.0
+
+* Allow to change proxy settings when CID is set, but agent has not been
+  registered yet. Closes [#8](https://github.com/104ru/crowdstrike/issues/8).
+  Add a boolean key "cid" to the fact showing if CID has been set.
+  Thanks @davealden.
+* Merge [#7](https://github.com/104ru/crowdstrike/pull/7) adding capability to
+  custiomize falcon-sensor package source and provider. Thanks @fe80.
+* Add some more resilience to falconctl output format changes to the
+  falcon_sensor fact.
+* Fix logic in falcon_sensor fact, which was causing its failure if it becomes
+  unable to parse falconctl output.
+* Now falconctl fact returns distinct values in case of its failure to parse
+  falconctl output or falconctl returning an error.
+* Module is now capable of detecting falcon_sensor fact failure and gracefully
+  handle the situation.
+
 ## Release 1.3.0
 
 * Add `provisioning_token` parameter for a provisioning token.
