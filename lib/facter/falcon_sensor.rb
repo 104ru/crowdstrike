@@ -9,7 +9,7 @@ Facter.add(:falcon_sensor) do
   setcode do
     # find out if a customer id has been set. it is a
     # separate query because its failure masks all other responses
-    ask_falcon = "/opt/CrowdStrike/falconctl -g --cid"
+    ask_falcon = '/opt/CrowdStrike/falconctl -g --cid'
 
     falcon_says = Facter::Util::Resolution.exec(ask_falcon)
 
@@ -75,4 +75,3 @@ Facter.add(:falcon_sensor) do
     end
   end
 end
-

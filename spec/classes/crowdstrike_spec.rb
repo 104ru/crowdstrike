@@ -72,6 +72,7 @@ describe 'crowdstrike' do
             cid: 'AAAAAAAAAAAAA-BBB'
           }
         end
+
         it do
           is_expected.to contain_package('falcon-sensor').with(
             source: '/my/package',

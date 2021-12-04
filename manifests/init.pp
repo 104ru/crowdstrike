@@ -76,6 +76,7 @@ class crowdstrike (
       case $facts['falcon_sensor'] {
         'parsing_error': { fail('CrowdStrike module unalbe to parse falconctl output.') }
         'falconctl_error': { fail('CrowdStrike module encoutered and error while executing falconctl.') }
+        default: {}
       }
     }
 
