@@ -53,8 +53,7 @@ class crowdstrike (
   Optional[Stdlib::Port] $proxy_port        = undef,
   Optional[String] $package_source          = undef,
   Optional[String] $package_provider        = undef,
-){
-
+) {
   if $ensure == 'absent' {
     $pkg_ensure = $facts['os']['family'] ? {
       'Debian' => 'purged',
@@ -103,7 +102,7 @@ class crowdstrike (
       # crowdstrike is installed and configured.
       # get currently used tags
       $current_tags = $facts.get('falcon_sensor.tags', [])
-      if sort($tags) != sort($current_tags) {
+      if $tags and (sort($tags) != sort($current_tags)) {
         $update_tags = $cmd_tags
       } else {
         $update_tags = ''
