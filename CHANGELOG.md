@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.4.1
+
+* Merged [#11](https://github.com/104ru/crowdstrike/pull/11) adding SLES
+  support. Thanks, @thirumoorthir.
+
 ## Release 1.4.0
 
 * Allow to change proxy settings when CID is set, but agent has not been
