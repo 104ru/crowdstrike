@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.4.2
+
+* Force falconctl to apply provided module parameters during the registration
+  to prvent some edge cases when the module applied over the manual
+  installation. Resolves [#12](https://github.com/104ru/crowdstrike/issues/12).
+  Thanks, @RamblingCookieMonster for pointing it out.
+* Expand unit test to cover more cases.
+* Allow stdlib 8.x.
+
 ## Release 1.4.1
 
 * Merged [#11](https://github.com/104ru/crowdstrike/pull/11) adding SLES

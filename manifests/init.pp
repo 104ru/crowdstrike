@@ -158,7 +158,7 @@ class crowdstrike (
 
       exec { 'register-crowdstrike':
         path    => '/usr/bin:/usr/sbin:/opt/CrowdStrike',
-        command => "falconctl -s${cmd_cid}${cmd_token}${cmd_proxy}${cmd_tags}",
+        command => "falconctl -sf${cmd_cid}${cmd_token}${cmd_proxy}${cmd_tags}",
         require => Package['falcon-sensor'],
         notify  => Service['falcon-sensor'],
       }
