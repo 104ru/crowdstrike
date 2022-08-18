@@ -8,10 +8,10 @@
 #   If `present` or `latest` installs the agent, keeping it up-to-date with the latter value.
 #   When set to `absent` uninstalls the agent's package.
 #
-# @param [Optional[String]] cid
+# @param [Optional[Variant[String, Deferred]]] cid
 #   Customer IDentifier. Necessary to register the agent with the service. Mandatory.
 #
-# @param [Optional[String]] provisioning_token
+# @param [Optional[Variant[String, Deferred]]] provisioning_token
 #   Provisioning token for the crowdstrike agent installation.
 #
 # @param [Optional[Array[String]]] tags
@@ -45,14 +45,14 @@
 #
 #
 class crowdstrike (
-  Enum['present','absent','latest'] $ensure = 'present',
-  Optional[String] $cid                     = undef,
-  Optional[String] $provisioning_token      = undef,
-  Optional[Array[String]] $tags             = undef,
-  Optional[String] $proxy_host              = undef,
-  Optional[Stdlib::Port] $proxy_port        = undef,
-  Optional[String] $package_source          = undef,
-  Optional[String] $package_provider        = undef,
+  Enum['present','absent','latest'] $ensure                    = 'present',
+  Optional[Variant[String, Deferred]] $cid                     = undef,
+  Optional[Variant[String, Deferred]] $provisioning_token      = undef,
+  Optional[Array[String]] $tags                                = undef,
+  Optional[String] $proxy_host                                 = undef,
+  Optional[Stdlib::Port] $proxy_port                           = undef,
+  Optional[String] $package_source                             = undef,
+  Optional[String] $package_provider                           = undef,
 ) {
   if $ensure == 'absent' {
     $pkg_ensure = $facts['os']['family'] ? {
@@ -167,7 +167,7 @@ class crowdstrike (
     service { 'falcon-sensor':
       ensure  => running,
       enable  => true,
-      require => Package['falcon-sensor']
+      require => Package['falcon-sensor'],
     }
   }
 }
