@@ -58,7 +58,7 @@ Default value: `'present'`
 
 ##### <a name="cid"></a>`cid`
 
-Data type: `Optional[String]`
+Data type: `Optional[Variant[String, Deferred]]`
 
 Customer IDentifier. Necessary to register the agent with the service. Mandatory.
 
@@ -66,7 +66,7 @@ Default value: ``undef``
 
 ##### <a name="provisioning_token"></a>`provisioning_token`
 
-Data type: `Optional[String]`
+Data type: `Optional[Variant[String, Deferred]]`
 
 Provisioning token for the crowdstrike agent installation.
 

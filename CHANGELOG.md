@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.4.3
+
+* Support deferred data type for CID and provisioning token. Merge
+  [#14](https://github.com/104ru/crowdstrike/pull/14). Thanks @tedgarb.
+* Drop support for RHEL 6 and SLES 12.
+
 ## Release 1.4.2
 
 * Force falconctl to apply provided module parameters during the registration

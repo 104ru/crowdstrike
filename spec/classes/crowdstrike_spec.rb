@@ -2,13 +2,8 @@
 
 require 'spec_helper'
 
-just_debian_and_redhat = { supported_os: [
-  { 'operatingsystem' => 'Debian', 'operatingsystemrelease' => ['10'] },
-  { 'operatingsystem' => 'RedHat', 'operatingsystemrelease' => ['8'] },
-] }
-
 describe 'crowdstrike' do
-  on_supported_os(just_debian_and_redhat).each do |os, os_facts|
+  on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let(:facts) { os_facts }
 
