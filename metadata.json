@@ -1,6 +1,6 @@
 {
   "name": "ruthenium-crowdstrike",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "author": "Ruthenium",
   "summary": "Install and manage CrowdStrike Falcon Sensor",
   "license": "MIT",
