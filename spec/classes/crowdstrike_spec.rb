@@ -108,7 +108,7 @@ describe 'crowdstrike' do
         it { is_expected.to compile }
 
         context 'no proxy or tags' do
-          it { is_expected.to contain_exec('register-crowdstrike').with_command('falconctl -sf --cid=AAAAAAAAAAAAA-BBB --apd=TRUE') }
+          it { is_expected.to contain_exec('register-crowdstrike').with_command(sensitive('falconctl -sf --cid=AAAAAAAAAAAAA-BBB --apd=TRUE')) }
         end
 
         context 'proxy set' do
@@ -116,7 +116,7 @@ describe 'crowdstrike' do
             super().merge(proxy_host: 'server.example.com', proxy_port: 3128)
           end
 
-          it { is_expected.to contain_exec('register-crowdstrike').with_command('falconctl -sf --cid=AAAAAAAAAAAAA-BBB --apd=FALSE --aph=server.example.com --app=3128') }
+          it { is_expected.to contain_exec('register-crowdstrike').with_command(sensitive('falconctl -sf --cid=AAAAAAAAAAAAA-BBB --apd=FALSE --aph=server.example.com --app=3128')) }
         end
 
         context 'tags set' do
@@ -124,7 +124,7 @@ describe 'crowdstrike' do
             super().merge(tags: ['org', 'suborg'])
           end
 
-          it { is_expected.to contain_exec('register-crowdstrike').with_command('falconctl -sf --cid=AAAAAAAAAAAAA-BBB --apd=TRUE --tags=org,suborg') }
+          it { is_expected.to contain_exec('register-crowdstrike').with_command(sensitive('falconctl -sf --cid=AAAAAAAAAAAAA-BBB --apd=TRUE --tags=org,suborg')) }
         end
 
         ### Interesting case if cid has already been set, but fact is not there yet. How to test?
@@ -142,7 +142,7 @@ describe 'crowdstrike' do
         it { is_expected.to compile }
 
         context 'proxy or tags not set' do
-          it { is_expected.to contain_exec('register-crowdstrike').with_command('falconctl -sf --cid=AAAAAAAAAAAAA-BBB --apd=TRUE') }
+          it { is_expected.to contain_exec('register-crowdstrike').with_command(sensitive('falconctl -sf --cid=AAAAAAAAAAAAA-BBB --apd=TRUE')) }
         end
 
         context 'proxy is set' do
@@ -150,7 +150,7 @@ describe 'crowdstrike' do
             super().merge(proxy_host: 'server.example.com', proxy_port: 3128)
           end
 
-          it { is_expected.to contain_exec('register-crowdstrike').with_command('falconctl -sf --cid=AAAAAAAAAAAAA-BBB --apd=FALSE --aph=server.example.com --app=3128') }
+          it { is_expected.to contain_exec('register-crowdstrike').with_command(sensitive('falconctl -sf --cid=AAAAAAAAAAAAA-BBB --apd=FALSE --aph=server.example.com --app=3128')) }
         end
 
         context 'tags are set' do
@@ -158,7 +158,7 @@ describe 'crowdstrike' do
             super().merge(tags: ['org', 'suborg'])
           end
 
-          it { is_expected.to contain_exec('register-crowdstrike').with_command('falconctl -sf --cid=AAAAAAAAAAAAA-BBB --apd=TRUE --tags=org,suborg') }
+          it { is_expected.to contain_exec('register-crowdstrike').with_command(sensitive('falconctl -sf --cid=AAAAAAAAAAAAA-BBB --apd=TRUE --tags=org,suborg')) }
         end
       end
 
