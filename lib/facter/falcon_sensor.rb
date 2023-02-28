@@ -23,15 +23,15 @@ Facter.add(:falcon_sensor) do
       --rfm-state --rfm-reason --version --tags"
 
     # format in which falconctl outputs data
-    pattern = %r{^aid(?:=|\sis\s)"?(?<agent_id>not\sset|[a-f0-9]*)"?[,\s\n]*
-      apd(?:=|\sis\s)(?<proxy_disable>not\sset|TRUE|FALSE)[,\s\n]*
-      aph(?:=|\sis\s)(?<proxy_host>not\sset|[^,]+)[,\s\n]*
-      app(?:=|\sis\s)(?<proxy_port>not\sset|[^,]+)[,\s\n]*
-      rfm-state(?:=|\sis\s)(?<reduced_functionality_mode>not\sset|true|false)[,\s\n]*
-      rfm-reason(?:=|\sis\s)(?<reduced_functionality_reason>not\sset|[^,]+)[,\s\n]*
-      (code=0x[A-F0-9]+,\s)?[,\s\n]*
-      version\s=\s(?<version>[\d\.]+)[,\s\n]*
-      (?:Sensor\sgrouping\s)?tags(?:=|\sare\s)(?<tags>.*),\s*$}x
+    pattern = %r{^(aid(?:=|\sis\s)"?(?<agent_id>not\sset|[a-f0-9]*)"?[,\s\n]*|
+      apd(?:=|\sis\s)(?<proxy_disable>not\sset|TRUE|FALSE)[,\s\n]*|
+      aph(?:=|\sis\s)(?<proxy_host>not\sset|[^,]+)[,\s\n]*|
+      app(?:=|\sis\s)(?<proxy_port>not\sset|[^,]+)[,\s\n]*|
+      rfm-state(?:=|\sis\s)(?<reduced_functionality_mode>not\sset|true|false)[,\s\n]*|
+      rfm-reason(?:=|\sis\s)(?<reduced_functionality_reason>not\sset|[^,]+)[,\s\n]*|
+      (code=0x[A-F0-9]+,\s?)?[,\s\n]*|
+      version\s=\s(?<version>[\d\.]+)[,\s\n]*|
+      (?:Sensor\sgrouping\s)?tags(?:=|\sare\s)(?<tags>([^,\s]*,?)*)[,\s\n]*)*$}x
 
     falcon_says = Facter::Util::Resolution.exec(ask_falcon)
 
