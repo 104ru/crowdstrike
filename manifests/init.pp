@@ -149,16 +149,35 @@ class crowdstrike (
         fail('CID parameter must be specified to register the agent!')
       }
 
-      $cmd_cid = " --cid=${cid}"
-
-      $cmd_token = $provisioning_token ? {
-        undef   => '',
-        default => " --provisioning-token=${provisioning_token}"
+      if $cid.is_a(Deferred) {
+        $cmd_cid = Deferred('inline_epp', [' --cid="<%= $cid %>"', { 'cid' => $cid }])
+      } else {
+        $cmd_cid = " --cid=${cid}"
       }
 
+      if $provisioning_token {
+        if $provisioning_token.is_a(Deferred) {
+          $cmd_token = Deferred(
+            'inline_epp', [' --provisioning-token="<%= $provisioning-token %>"', { 'provisioning_token' => $provisioning_token }]
+          )
+        } else {
+          $cmd_token = " --provisioning-token=${provisioning_token}"
+        }
+      } else {
+        $cmd_token = ''
+      }
+
+      if $cmd_cid.is_a(Deferred) or $cmd_token.is_a(Deferred) {
+        $_reg_command = Sensitive(Deferred('inline_epp', [
+              'falconctl -sf<%= $cmd_cid %><%= $cmd_token %><%= $cmd_proxy %><%= $cmd_tags %>',
+              { 'cmd_cid' => $cmd_cid, 'cmd_token' => $cmd_token, 'cmd_proxy' => $cmd_proxy, 'cmd_tags' => $cmd_tags },
+        ]))
+      } else {
+        $_reg_command = Sensitive("falconctl -sf${cmd_cid}${cmd_token}${cmd_proxy}${cmd_tags}")
+      }
       exec { 'register-crowdstrike':
         path    => '/usr/bin:/usr/sbin:/opt/CrowdStrike',
-        command => "falconctl -sf${cmd_cid}${cmd_token}${cmd_proxy}${cmd_tags}",
+        command => $_reg_command,
         require => Package['falcon-sensor'],
         notify  => Service['falcon-sensor'],
       }
