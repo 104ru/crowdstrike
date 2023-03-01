@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.4.5
+
+* Improve Deferred/Sensitive handling of CID and Install Token. Merge
+  [#15](https://github.com/104ru/crowdstrike/pull/15). Thanks @tedgarb.
+
 ## Release 1.4.4
 
 * Update fact to accomodate the changes in falconctl output in v6.51. Merge
