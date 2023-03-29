@@ -29,9 +29,9 @@ Facter.add(:falcon_sensor) do
       app(?:=|\sis\s)(?<proxy_port>not\sset|[^,]+)[,\s\n]*|
       rfm-state(?:=|\sis\s)(?<reduced_functionality_mode>not\sset|true|false)[,\s\n]*|
       rfm-reason(?:=|\sis\s)(?<reduced_functionality_reason>not\sset|[^,]+)[,\s\n]*|
-      (code=0x[A-F0-9]+,\s?)?[,\s\n]*|
+      (code=0x[A-F0-9]+)[,\s\n]*|
       version\s=\s(?<version>[\d\.]+)[,\s\n]*|
-      (?:Sensor\sgrouping\s)?tags(?:=|\sare\s)(?<tags>([^,\s]*,?)*)[,\s\n]*)*$}x
+      (?:Sensor\sgrouping\s)?tags(?:=|\sare\s)(?<tags>[^,]*)[,\s\n]*)*$}x
 
     falcon_says = Facter::Util::Resolution.exec(ask_falcon)
 
