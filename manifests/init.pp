@@ -73,8 +73,8 @@ class crowdstrike (
     # confirm that the falcon_sensor fact is working, otherwise fail hard
     if 'falcon_sensor' in $facts {
       case $facts['falcon_sensor'] {
-        'parsing_error': { fail('CrowdStrike module unalbe to parse falconctl output.') }
-        'falconctl_error': { fail('CrowdStrike module encoutered and error while executing falconctl.') }
+        'parsing_error': { fail('CrowdStrike module unable to parse falconctl output.') }
+        'falconctl_error': { fail('CrowdStrike module encountered and error while executing falconctl.') }
         default: {}
       }
     }
