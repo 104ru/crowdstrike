@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## Release 1.4.6
 
+* Update PDK to 3.0.
+* Add RHEL 9 support.
+* Drop support for Debian 9 and Ubuntu 18.04
+
+## Release 1.4.6
+
 * Update fact with the changes in falconctl output format with 6.51.14812.0.
   Closes [#19](https://github.com/104ru/crowdstrike/issues/19).
 
