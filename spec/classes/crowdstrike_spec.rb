@@ -69,7 +69,7 @@ describe 'crowdstrike' do
           { falcon_sensor: 'parsing_error' }
         end
 
-        it { is_expected.to compile.and_raise_error(%r{unalbe to parse falconctl}) }
+        it { is_expected.to compile.and_raise_error(%r{unable to parse falconctl}) }
       end
 
       context 'facter falconctl run failure' do
