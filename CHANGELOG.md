@@ -2,11 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## Release 1.4.6
+## Release 1.4.7
 
 * Update PDK to 3.0.
 * Add RHEL 9 support.
-* Drop support for Debian 9 and Ubuntu 18.04
+* Drop support for Debian 9 and Ubuntu 18.04.
 
 ## Release 1.4.6
 
