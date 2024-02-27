@@ -38,16 +38,16 @@ class { '::crowdstrike':
 
 The following parameters are available in the `crowdstrike` class:
 
-* [`ensure`](#ensure)
-* [`cid`](#cid)
-* [`provisioning_token`](#provisioning_token)
-* [`tags`](#tags)
-* [`proxy_host`](#proxy_host)
-* [`proxy_port`](#proxy_port)
-* [`package_source`](#package_source)
-* [`package_provider`](#package_provider)
+* [`ensure`](#-crowdstrike--ensure)
+* [`cid`](#-crowdstrike--cid)
+* [`provisioning_token`](#-crowdstrike--provisioning_token)
+* [`tags`](#-crowdstrike--tags)
+* [`proxy_host`](#-crowdstrike--proxy_host)
+* [`proxy_port`](#-crowdstrike--proxy_port)
+* [`package_source`](#-crowdstrike--package_source)
+* [`package_provider`](#-crowdstrike--package_provider)
 
-##### <a name="ensure"></a>`ensure`
+##### <a name="-crowdstrike--ensure"></a>`ensure`
 
 Data type: `Enum['present','absent','latest']`
 
@@ -56,59 +56,59 @@ When set to `absent` uninstalls the agent's package.
 
 Default value: `'present'`
 
-##### <a name="cid"></a>`cid`
+##### <a name="-crowdstrike--cid"></a>`cid`
 
 Data type: `Optional[Variant[String, Deferred]]`
 
 Customer IDentifier. Necessary to register the agent with the service. Mandatory.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="provisioning_token"></a>`provisioning_token`
+##### <a name="-crowdstrike--provisioning_token"></a>`provisioning_token`
 
 Data type: `Optional[Variant[String, Deferred]]`
 
 Provisioning token for the crowdstrike agent installation.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="tags"></a>`tags`
+##### <a name="-crowdstrike--tags"></a>`tags`
 
 Data type: `Optional[Array[String]]`
 
 Array of string tags used to group agents in the CrowdStrike console.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_host"></a>`proxy_host`
+##### <a name="-crowdstrike--proxy_host"></a>`proxy_host`
 
 Data type: `Optional[String]`
 
 Proxy server host name for proxied connections. Mandatory if `proxy_port` is specified.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_port"></a>`proxy_port`
+##### <a name="-crowdstrike--proxy_port"></a>`proxy_port`
 
 Data type: `Optional[Stdlib::Port]`
 
 Proxy server port for proxied connections. Mandatory if `proxy_host` is specified.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="package_source"></a>`package_source`
+##### <a name="-crowdstrike--package_source"></a>`package_source`
 
 Data type: `Optional[String]`
 
 Define a package source for installation
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="package_provider"></a>`package_provider`
+##### <a name="-crowdstrike--package_provider"></a>`package_provider`
 
 Data type: `Optional[String]`
 
 Define a package provider for installation
 
-Default value: ``undef``
+Default value: `undef`
 
