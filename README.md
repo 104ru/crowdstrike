@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/104ru/crowdstrike.svg?branch=master)](https://app.travis-ci.com/github/104ru/crowdstrike)
+[![Build Status](https://github.com/104ru/crowdstrike/workflows/CI/badge.svg)](https://github.com/104ru/crowdstrike/actions?query=workflow%3ACI)
 [![Puppet Forge](https://img.shields.io/puppetforge/v/ruthenium/crowdstrike.svg)](https://forge.puppet.com/modules/ruthenium/crowdstrike)
 [![Puppet Forge -- Downloads](https://shields.io/puppetforge/dt/ruthenium/crowdstrike)](https://forge.puppet.com/modules/ruthenium/crowdstrike)
 
