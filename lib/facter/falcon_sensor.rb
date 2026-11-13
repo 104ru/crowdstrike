@@ -11,7 +11,7 @@ Facter.add(:falcon_sensor) do
     # separate query because its failure masks all other responses
     ask_falcon = '/opt/CrowdStrike/falconctl -g --cid'
 
-    falcon_says = Facter::Util::Resolution.exec(ask_falcon)
+    falcon_says = Facter::Core::Execution.execute(ask_falcon)
 
     # empty response means that it has been an error message and it went
     # to stderr, which exec function did not capture. we do not get the
@@ -33,7 +33,7 @@ Facter.add(:falcon_sensor) do
       version\s=\s(?<version>[\d\.]+)[,\s\n]*|
       (?:Sensor\sgrouping\s)?tags(?:=|\sare\s)(?<tags>(not\sset|[^,\s]*,?)*)[,\s\n]*)+$}x
 
-    falcon_says = Facter::Util::Resolution.exec(ask_falcon)
+    falcon_says = Facter::Core::Execution.execute(ask_falcon)
 
     if !falcon_says.empty?
       match_data = pattern.match(falcon_says)
